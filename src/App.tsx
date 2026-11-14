@@ -28,10 +28,10 @@ export default function App() {
         </nav>
         <span />
       </header>
+      <div className="gearbar">
+        <SettingsButton />
+      </div>
       <main>
-        <div className="toolbar">
-          <SettingsButton />
-        </div>
         <About active={route === 'about'} />
         <Practice active={route === 'practice'} />
         <Playing active={route === 'playing'} />
