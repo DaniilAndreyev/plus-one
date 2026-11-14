@@ -18,15 +18,15 @@ const CELLS: { key: Rank; label: string }[] = [
 ]
 
 const BLURB: Record<string, string> = {
-  'hi-lo': 'The classic starting point: simple +1 / 0 / −1 and balanced, so it is easy to run fast and convert to a true count.',
-  'hi-opt-1': 'Hi-Lo without the aces or 2s — a cleaner balanced count, usually paired with a separate ace count.',
-  'hi-opt-2': 'A balanced level-2 count that splits the low cards for extra accuracy.',
-  ko: 'Knock-Out: like Hi-Lo but it also counts 7s, which makes it unbalanced — play straight off the running count, no conversion.',
-  'omega-2': 'A precise balanced level-2 count that even gives the 9 a value.',
-  'red-7': 'Hi-Lo plus the red 7s — a beginner-friendly unbalanced count.',
-  halves: 'A level-3 count using half-points for the strongest accuracy.',
-  zen: 'A balanced level-2 count weighting aces −1 and the richest low cards +2.',
-  'ten-count': 'One of the oldest counts: everything is +1 except the tens, which are −2.',
+  'hi-lo': 'The classic starting point. It uses simple +1, 0 and −1 values and it is balanced, so it is easy to run fast and turn into a true count.',
+  'hi-opt-1': 'Like Hi-Lo but the aces and 2s are worth 0. A cleaner balanced count that players often pair with a separate ace count.',
+  'hi-opt-2': 'A balanced level 2 count that splits the low cards apart for more accuracy.',
+  ko: 'Knock Out works like Hi-Lo but it also counts 7s. That makes it unbalanced, so you can play straight off the running count with no conversion.',
+  'omega-2': 'A precise balanced level 2 count that even gives the 9 a value.',
+  'red-7': 'Hi-Lo plus the red 7s. A friendly unbalanced count for beginners.',
+  halves: 'A level 3 count that uses half points for the best accuracy.',
+  zen: 'A balanced level 2 count that weights aces at −1 and the richest low cards at +2.',
+  'ten-count': 'One of the oldest counts. Everything is worth +1 except the tens, which are −2.',
 }
 
 /** Groups a system's ranks by their value, highest value first. */
@@ -49,8 +49,8 @@ export default function Home({ active }: { active: boolean }) {
         <img className="home-hero__logo" src="/res/plusonelogo.png" alt="+1 Hi-Lo card counting trainer" />
         <div className="home-hero__intro">
           <p>
-            <b>+1</b> trains you to count cards like a real table — several hands, cards flying, one running number in
-            your head. Practice the count, then play blackjack while you keep it.
+            <b>+1</b> helps you learn to count cards the way you would at a real table. Lots of hands, fast cards, and
+            one number to keep in your head. Practice the count, then play blackjack while you keep track.
           </p>
           <button className="btn" onClick={() => go('practice')}>
             Start practice
@@ -60,8 +60,8 @@ export default function Home({ active }: { active: boolean }) {
 
       <h2>Counting systems</h2>
       <p className="muted">
-        Pick a system to see its card values — higher levels are more accurate but harder to keep up with. Choose the one
-        you play with from the gear menu.
+        Pick a system to see its card values. Higher levels are more accurate but harder to keep up with. You can choose
+        the one you play with from the gear menu.
       </p>
       <div className="strat">
         <div className="strat-tabs" role="tablist" aria-label="Counting systems">
@@ -78,10 +78,10 @@ export default function Home({ active }: { active: boolean }) {
           ))}
         </div>
         <div className="strat-box">
-          <h3>
-            {sys.name} <span className="muted">· level {sys.level}</span>
-          </h3>
-          <p className="lead">{BLURB[sys.id]}</p>
+          <h3>{sys.name}</h3>
+          <p className="lead">
+            <span className="muted">Level {sys.level}.</span> {BLURB[sys.id]}
+          </p>
           <div className="strat-vals">
             {valueGroups(sys).map((g) => (
               <div key={g.value}>
@@ -90,25 +90,26 @@ export default function Home({ active }: { active: boolean }) {
               </div>
             ))}
           </div>
-          {sys.redSeven && <p className="strat-note">The 7 is split by colour: a red 7 counts +1, a black 7 counts 0.</p>}
+          {sys.redSeven && <p className="strat-note">The 7 depends on colour. A red 7 counts +1 and a black 7 counts 0.</p>}
         </div>
       </div>
 
       <h2>What is card counting?</h2>
       <p>
-        It tracks how many high cards — tens and aces — are left. They favour the player: more blackjacks, more dealer
-        busts. So when plenty remain, you bet more. You keep one running number, not every card.
+        It is a way to track how many high cards, the tens and aces, are still in the shoe. Those cards are good for you,
+        since they mean more blackjacks and more dealer busts. When a lot of them are left, you bet more. You only keep
+        one running number, not every card.
       </p>
 
       <h2>Running count vs true count</h2>
       <p>
-        Start at 0; each card adds its value — that is the <b>running count</b>. Divide it by the decks still unplayed for
-        the <b>true count</b>, the number you actually bet on.
+        You start at 0 and every card adds its value. That total is the <b>running count</b>. Divide it by the number of
+        decks still to be played and you get the <b>true count</b>, which is the number you actually bet on.
       </p>
 
       <p className="muted">
-        Counting is legal, but casinos can ask you to leave — and online games reshuffle every hand, so it only works on a
-        real shoe.
+        Counting cards is legal, but a casino can still ask you to leave. Online games also reshuffle every hand, so it
+        only works on a real shoe.
       </p>
     </section>
   )

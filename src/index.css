@@ -21,15 +21,15 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 40px}
 h2{font-size:1.6rem;margin:32px 0 8px}
 .muted{color:var(--mute)}
 p.muted{font-size:.95rem}
-.home-hero{display:flex;align-items:center;gap:28px;flex-wrap:wrap;padding:26px 0 6px}
-.home-hero__logo{width:clamp(110px,18vw,180px);height:auto;flex:none;object-fit:contain}
-.home-hero__intro{flex:1 1 280px;min-width:260px}
-.home-hero__intro p{margin:0 0 16px;font-size:1.15rem;line-height:1.45}
+.home-hero{display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;padding:26px 0 6px}
+.home-hero__logo{width:clamp(140px,24vw,230px);height:auto;flex:none;object-fit:contain}
+.home-hero__intro{flex:0 1 380px;max-width:380px;min-width:260px}
+.home-hero__intro p{margin:0 0 16px;font-size:1.12rem;line-height:1.5;max-width:40ch}
 .strat{margin:8px 0 4px}
 .strat-tabs{display:flex;gap:4px;overflow-x:auto}
 .strat-tab{padding:8px 13px;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;background:var(--bg);color:var(--mute);font:inherit;font-weight:600;cursor:pointer;white-space:nowrap}
 .strat-tab.on{background:var(--surface);color:var(--brass-ink);box-shadow:0 -2px 0 var(--brass) inset}
-.strat-box{border:1px solid var(--line);border-radius:0 12px 12px 12px;background:var(--surface);padding:18px}
+.strat-box{border:1px solid var(--line);border-radius:0 12px 12px 12px;background:var(--surface);padding:18px;min-height:220px}
 .strat-box h3{margin:0;font-size:1.3rem}
 .strat-box .lead{margin:6px 0 16px;color:var(--mute);max-width:60ch}
 .strat-vals{display:flex;flex-wrap:wrap;gap:10px}
