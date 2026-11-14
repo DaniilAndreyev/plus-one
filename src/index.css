@@ -19,10 +19,25 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 40px}
 .hero .n{font-size:clamp(6rem,26vw,12rem);font-weight:800;line-height:.9;letter-spacing:-.06em;color:var(--brass-ink);margin:0}
 .hero p{max-width:46ch;margin:12px auto;color:var(--mute);font-size:1.1rem}
 h2{font-size:1.6rem;margin:32px 0 8px}
-.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
-.vals div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
-.vals b{display:block;font-size:2.2rem;line-height:1.1}
-.vals span{color:var(--mute)}
+.muted{color:var(--mute)}
+p.muted{font-size:.95rem}
+.home-hero{display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;padding:26px 0 6px}
+.home-hero__logo{width:clamp(140px,24vw,230px);height:auto;flex:none;object-fit:contain}
+.home-hero__intro{flex:0 1 380px;max-width:380px;min-width:260px}
+.home-hero__intro p{margin:0 0 16px;font-size:1.12rem;line-height:1.5;max-width:40ch}
+.strat{margin:8px 0 4px}
+.strat-tabs{display:flex;gap:4px;overflow-x:auto}
+.strat-tab{padding:8px 13px;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;background:var(--bg);color:var(--mute);font:inherit;font-weight:600;cursor:pointer;white-space:nowrap}
+.strat-tab.on{background:var(--surface);color:var(--brass-ink);box-shadow:0 -2px 0 var(--brass) inset}
+.strat-box{border:1px solid var(--line);border-radius:0 12px 12px 12px;background:var(--surface);padding:18px;min-height:220px}
+.strat-box h3{margin:0;font-size:1.3rem}
+.strat-box .lead{margin:6px 0 16px;color:var(--mute);max-width:60ch}
+.strat-vals{display:flex;flex-wrap:wrap;gap:10px}
+.strat-vals div{flex:1 1 110px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.strat-vals b{display:block;font-size:2rem;line-height:1.1}
+.strat-vals span{color:var(--mute);font-size:.95rem}
+.strat-note{margin:12px 0 0;color:var(--mute);font-size:.9rem}
+.c-pos{color:#1f9d57}.c-neg{color:#e06a5f}
 .btn{padding:11px 22px;background:var(--brass);color:#2a1d04;border:0;border-radius:8px;font:inherit;font-weight:800;cursor:pointer}
 .btn:disabled{opacity:.45;cursor:default}
 .ghost{padding:9px 16px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;font:inherit;font-weight:600;cursor:pointer}
@@ -41,6 +56,7 @@ h2{font-size:1.6rem;margin:32px 0 8px}
 .tag{font-size:.9rem;opacity:.8;min-height:1.3em}
 .head{position:absolute;transform:translate(-50%,-50%);width:clamp(38px,5.5vw,60px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.22),rgba(255,255,255,.07));border:2px solid rgba(255,255,255,.4);box-shadow:0 2px 8px rgba(0,0,0,.35)}
 .gearbar{position:relative;z-index:5}
+.strategy-badge{position:absolute;top:8px;left:12px;display:flex;align-items:center;height:40px;color:var(--ink);font-weight:700;font-size:.95rem;opacity:.85;white-space:nowrap}
 .gear{position:absolute;top:8px;right:12px;width:40px;height:40px;display:grid;place-items:center;border:0;background:transparent;color:var(--ink);cursor:pointer;opacity:.75;transition:opacity .15s,transform .2s}
 .gear:hover{opacity:1;transform:rotate(45deg)}
 .chip{position:absolute;top:12px;left:14px;background:rgba(0,0,0,.35);padding:4px 10px;border-radius:99px;font-weight:600;font-size:.9rem}
