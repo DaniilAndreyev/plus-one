@@ -50,7 +50,113 @@ h2{font-size:1.6rem;margin:32px 0 8px}
 .bal{position:absolute;left:50%;transform:translateX(-50%);bottom:24%;background:rgba(0,0,0,.35);padding:8px 12px;border-radius:10px;font-weight:600}
 .acts{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:80%}
 .bar{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:12px;color:var(--mute)}
-dialog{border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);padding:20px;width:min(92vw,360px)}
-dialog label{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:12px 0;font-weight:600}
-dialog select,dialog input[type=range]{accent-color:var(--brass)}
+.settings-dialog {
+  width: min(92vw, 420px);
+  max-height: 90dvh;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--brass);
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--ink);
+  color-scheme: light;
+  box-shadow: 0 24px 80px rgb(0 0 0 / .3);
+}
+.settings-dialog::backdrop {
+  background: rgb(6 18 28 / .65);
+  backdrop-filter: blur(4px);
+}
+.settings-heading { margin-bottom: 12px; }
+.settings-heading h2 { margin: 0; font-size: 1.5rem; }
+.settings-heading p { margin: 4px 0 0; color: var(--mute); font-size: .9rem; }
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 80px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+.settings-label { display: grid; gap: 4px; font-weight: 600; }
+.settings-label small { color: var(--mute); font-size: .8rem; font-weight: 400; }
+.settings-select {
+  appearance: none;
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 10px 34px 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23b7842d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.settings-select option { background: var(--surface); color: var(--ink); }
+.settings-select:hover, .settings-checkbox:hover { border-color: var(--brass); }
+.settings-dialog :is(select, input, button):focus-visible {
+  outline: 3px solid var(--brass);
+  outline-offset: 3px;
+}
+.settings-range { display: grid; gap: 8px; width: 130px; flex-shrink: 0; }
+.settings-range output { color: var(--brass-ink); font-size: .85rem; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.settings-range input { width: 100%; margin: 0; accent-color: var(--brass); cursor: pointer; }
+.settings-checkbox {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  border: 2px solid var(--mute);
+  border-radius: 7px;
+  background: var(--bg);
+  cursor: pointer;
+}
+.settings-checkbox:checked { background: var(--brass); border-color: var(--brass); }
+.settings-checkbox:checked::after {
+  content: '';
+  width: 12px;
+  height: 7px;
+  margin-top: -3px;
+  border-left: 2px solid #2a1d04;
+  border-bottom: 2px solid #2a1d04;
+  transform: rotate(-45deg);
+}
+.settings-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+.settings-action {
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.settings-action:hover { border-color: var(--brass); }
+.settings-close { grid-column: 1 / -1; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .settings-dialog { color-scheme: dark; }
+}
+:root[data-theme="dark"] .settings-dialog { color-scheme: dark; }
+@media (max-width: 380px) {
+  .settings-dialog { padding: 18px; }
+  .settings-row { gap: 10px; }
+  .settings-range { width: 105px; }
+  .settings-actions { grid-template-columns: 1fr; }
+}
+@media (forced-colors: active) {
+  .settings-checkbox { appearance: auto; }
+  .settings-checkbox:checked::after { content: none; }
+  .settings-select { appearance: auto; background-image: none; padding-right: 14px; }
+}
 .hide{display:none!important}

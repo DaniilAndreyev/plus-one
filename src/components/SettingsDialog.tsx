@@ -13,36 +13,57 @@ export default function SettingsDialog() {
   }, [s.settingsOpen])
 
   return (
-    <dialog ref={ref} onClose={s.closeSettings}>
-      <h2 style={{ margin: '0 0 4px', fontSize: '1.3rem' }}>Settings</h2>
-      <label>
-        Decks
-        <select value={s.decks} onChange={(e) => s.setDecks(Number(e.target.value))}>
+    <dialog className="settings-dialog" ref={ref} onClose={s.closeSettings} aria-labelledby="settings-title">
+      <div className="settings-heading">
+        <h2 id="settings-title">Settings</h2>
+        <p>Make the table your own.</p>
+      </div>
+      <label className="settings-row">
+        <span className="settings-label">
+          Decks
+          <small>Cards in each shoe</small>
+        </span>
+        <select className="settings-select" value={s.decks} onChange={(e) => s.setDecks(Number(e.target.value))}>
           {[1, 2, 4, 6, 8].map((n) => (
             <option key={n} value={n}>
-              {n}
+              {n} {n === 1 ? 'deck' : 'decks'}
             </option>
           ))}
         </select>
       </label>
-      <label>
-        Deal speed
+      <label className="settings-row" htmlFor="settings-speed">
+        <span className="settings-label">
+          Deal speed
+          <small>Higher means slower</small>
+        </span>
+        <span className="settings-range">
+          <output htmlFor="settings-speed">{s.speed} ms</output>
+          <input
+            id="settings-speed"
+            type="range"
+            min={150}
+            max={1200}
+            step={50}
+            value={s.speed}
+            onChange={(e) => s.setSpeed(Number(e.target.value))}
+          />
+        </span>
+      </label>
+      <label className="settings-row">
+        <span className="settings-label">
+          Show running count
+          <small>Keep the count visible at the table</small>
+        </span>
         <input
-          type="range"
-          min={150}
-          max={1200}
-          step={50}
-          value={s.speed}
-          onChange={(e) => s.setSpeed(Number(e.target.value))}
+          className="settings-checkbox"
+          type="checkbox"
+          checked={s.showCount}
+          onChange={(e) => s.setShowCount(e.target.checked)}
         />
       </label>
-      <label>
-        Show running count
-        <input type="checkbox" checked={s.showCount} onChange={(e) => s.setShowCount(e.target.checked)} />
-      </label>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <div className="settings-actions">
         <button
-          className="btn"
+          className="settings-action"
           onClick={() => {
             s.reshuffle()
             s.closeSettings()
@@ -51,7 +72,7 @@ export default function SettingsDialog() {
           Reshuffle shoes
         </button>
         <button
-          className="btn"
+          className="settings-action"
           onClick={() => {
             s.resetBalance()
             s.closeSettings()
@@ -59,7 +80,7 @@ export default function SettingsDialog() {
         >
           Reset balance
         </button>
-        <button className="ghost" style={{ color: 'var(--ink)', borderColor: 'var(--line)' }} onClick={s.closeSettings}>
+        <button className="btn settings-close" onClick={s.closeSettings}>
           Close
         </button>
       </div>
