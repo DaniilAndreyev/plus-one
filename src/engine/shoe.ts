@@ -1,5 +1,5 @@
-import { hiLoValue } from './hiLo'
-import type { Card, Rank, Shoe, Suit } from './types'
+import { countValue, getSystem } from './systems'
+import type { Card, CountingSystem, Rank, Shoe, Suit } from './types'
 
 export const RANKS: Rank[] = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
@@ -11,7 +11,11 @@ export const SUITS: { symbol: Suit; red: boolean }[] = [
 ]
 
 /** Builds `decks` decks and shuffles with Fisher-Yates. runningCount starts at 0. */
-export function buildShoe(decks: number, rng: () => number = Math.random): Shoe {
+export function buildShoe(
+  decks: number,
+  system: CountingSystem = getSystem('hi-lo'),
+  rng: () => number = Math.random,
+): Shoe {
   const cards: Card[] = []
   for (let d = 0; d < decks; d++) {
     for (const s of SUITS) {
@@ -22,7 +26,7 @@ export function buildShoe(decks: number, rng: () => number = Math.random): Shoe 
     const j = Math.floor(rng() * (i + 1))
     ;[cards[i], cards[j]] = [cards[j], cards[i]]
   }
-  return { cards, runningCount: 0 }
+  return { cards, runningCount: 0, system }
 }
 
 /** True when fewer than max(30, decks × 13) cards remain (about 75% dealt). */
@@ -34,6 +38,6 @@ export function needsReshuffle(shoe: Shoe, decks: number): boolean {
 export function drawCard(shoe: Shoe, count = true): Card {
   const card = shoe.cards.pop()
   if (!card) throw new Error('Shoe is empty')
-  if (count) shoe.runningCount += hiLoValue(card.rank)
+  if (count) shoe.runningCount += countValue(shoe.system ?? getSystem('hi-lo'), card)
   return card
 }
