@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { SYSTEMS } from '../engine/systems'
 import { useSettings } from '../settings/context'
 
 export default function SettingsDialog() {
@@ -18,6 +19,19 @@ export default function SettingsDialog() {
         <h2 id="settings-title">Settings</h2>
         <p>Make the table your own.</p>
       </div>
+      <label className="settings-row">
+        <span className="settings-label">
+          Counting system
+          <small>Switching resets the shoe</small>
+        </span>
+        <select className="settings-select" value={s.systemId} onChange={(e) => s.setSystem(e.target.value)}>
+          {SYSTEMS.map((sys) => (
+            <option key={sys.id} value={sys.id}>
+              {sys.name} · level {sys.level}
+            </option>
+          ))}
+        </select>
+      </label>
       <label className="settings-row">
         <span className="settings-label">
           Decks

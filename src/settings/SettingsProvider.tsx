@@ -7,6 +7,7 @@ export default function SettingsProvider({ children }: { children: ReactNode }) 
   const [speed, setSpeed] = useState(600)
   const [showCount, setShowCount] = useState(false)
   const [balance, setBalance] = useState(25)
+  const [systemId, setSystem] = useState('hi-lo')
   const [shoeEpoch, setShoeEpoch] = useState(0)
   const [settingsOpen, setSettingsOpen] = useState(false)
 
@@ -15,11 +16,13 @@ export default function SettingsProvider({ children }: { children: ReactNode }) 
     speed,
     showCount,
     balance,
+    systemId,
     shoeEpoch,
     settingsOpen,
     setDecks,
     setSpeed,
     setShowCount,
+    setSystem,
     setBalance,
     resetBalance: () => setBalance(25),
     reshuffle: () => setShoeEpoch((n) => n + 1),

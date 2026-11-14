@@ -5,12 +5,15 @@ export interface Settings {
   speed: number
   showCount: boolean
   balance: number
+  /** Id of the active counting system (see engine/systems). */
+  systemId: string
   /** Increments whenever shoes must be rebuilt (reshuffle button). Pages also rebuild when `decks` changes. */
   shoeEpoch: number
   settingsOpen: boolean
   setDecks: (n: number) => void
   setSpeed: (n: number) => void
   setShowCount: (b: boolean) => void
+  setSystem: (id: string) => void
   setBalance: (n: number) => void
   resetBalance: () => void
   reshuffle: () => void
