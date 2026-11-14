@@ -5,7 +5,7 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
-header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:12px 16px;max-width:900px;margin:0 auto}
+header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:12px 24px;width:100%;border-bottom:1px solid var(--line);background:var(--surface)}
 .logo{font-weight:800;font-size:1.7rem;letter-spacing:-.04em;color:var(--brass-ink);text-decoration:none}
 nav{display:flex;gap:6px}
 nav a{padding:8px 16px;border:1px solid var(--line);border-radius:8px;color:var(--ink);text-decoration:none;font-weight:600;background:var(--surface)}
