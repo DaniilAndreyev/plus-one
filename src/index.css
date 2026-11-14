@@ -54,7 +54,7 @@ p.muted{font-size:.95rem}
 .card.back{background:repeating-linear-gradient(45deg,#c9861a 0 5px,#a86d12 5px 10px);border:4px solid #f7f2e6}
 @media (prefers-reduced-motion:no-preference){.card{animation:in .2s ease-out}@keyframes in{from{transform:translateY(-14px);opacity:0}}}
 .tag{font-size:.9rem;opacity:.8;min-height:1.3em}
-.head{position:absolute;transform:translate(-50%,-50%);width:clamp(48px,7vw,78px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.22),rgba(255,255,255,.07));border:2px solid rgba(255,255,255,.4);box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.head{position:absolute;transform:translate(-50%,-50%);width:clamp(58px,8.5vw,92px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.22),rgba(255,255,255,.07));border:2px solid rgba(255,255,255,.4);box-shadow:0 2px 8px rgba(0,0,0,.35)}
 .gearbar{position:relative;z-index:5}
 .strategy-badge{position:absolute;top:8px;left:12px;display:flex;align-items:center;height:40px;color:var(--ink);font-weight:700;font-size:.95rem;opacity:.85;white-space:nowrap}
 .gear{position:absolute;top:8px;right:12px;width:40px;height:40px;display:grid;place-items:center;border:0;background:transparent;color:var(--ink);cursor:pointer;opacity:.75;transition:opacity .15s,transform .2s}

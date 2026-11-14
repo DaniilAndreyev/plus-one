@@ -182,8 +182,8 @@ export default function Practice({ active }: { active: boolean }) {
           </div>
         )}
         </div>
-        <div className="head" style={{ top: '60%', left: '3%' }} aria-hidden="true" />
-        <div className="head" style={{ top: '60%', left: '97%' }} aria-hidden="true" />
+        <div className="head" style={{ top: '72%', left: '4%' }} aria-hidden="true" />
+        <div className="head" style={{ top: '72%', left: '96%' }} aria-hidden="true" />
       </div>
       <div className="bar">
         <span>
