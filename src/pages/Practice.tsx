@@ -131,7 +131,8 @@ export default function Practice({ active }: { active: boolean }) {
 
   return (
     <section id="practice" className={'view' + (active ? ' on' : '')}>
-      <div className="stage">
+      <div className="felt">
+        <div className="stage">
         {showCount && <CountChip shoe={shoe.current} />}
 
         <div className="pos" style={{ top: '3%', left: '50%' }}>
@@ -147,9 +148,6 @@ export default function Practice({ active }: { active: boolean }) {
         <div className="pos" style={{ top: '38%', left: '83%', transform: 'translateX(-50%) rotate(-60deg)' }}>
           <Hand cards={hands.p3} />
         </div>
-        <div className="head" style={{ top: '58%', left: '10%' }} aria-hidden="true" />
-        <div className="head" style={{ top: '58%', left: '90%' }} aria-hidden="true" />
-
         {phase === 'asking' && (
           <div className="ask">
             <b>What is the current count?</b>
@@ -180,6 +178,9 @@ export default function Practice({ active }: { active: boolean }) {
             </button>
           </div>
         )}
+        </div>
+        <div className="head" style={{ top: '60%', left: '3%' }} aria-hidden="true" />
+        <div className="head" style={{ top: '60%', left: '97%' }} aria-hidden="true" />
       </div>
       <div className="bar">
         <span>
