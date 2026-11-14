@@ -4,7 +4,7 @@ export default function About({ active }: { active: boolean }) {
   return (
     <section id="about" className={'view' + (active ? ' on' : '')}>
       <div className="hero">
-        <h1 className="n">+1</h1>
+        <img className="hero-logo" src="/res/plusonelogo.png" alt="+1 Hi-Lo card counting trainer" />
         <p>
           Learn to count cards the way it happens at a real table: several hands, cards falling fast, one running
           number in your head.

@@ -13,7 +13,7 @@ export default function App() {
     <SettingsProvider>
       <header>
         <a className="logo" href="#about">
-          +1
+          <img src="/res/plusonelogo.png" alt="Plus One home" />
         </a>
         <nav aria-label="Sections">
           <a href="#about" aria-current={current('about')}>
