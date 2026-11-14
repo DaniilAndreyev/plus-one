@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 
-export const ROUTES = ['about', 'practice', 'playing'] as const
+export const ROUTES = ['home', 'practice', 'playing'] as const
 export type Route = (typeof ROUTES)[number]
 
 function read(): Route {
   const h = window.location.hash.slice(1)
-  return (ROUTES as readonly string[]).includes(h) ? (h as Route) : 'about'
+  return (ROUTES as readonly string[]).includes(h) ? (h as Route) : 'home'
 }
 
 export function useHashRoute(): Route {

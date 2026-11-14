@@ -23,6 +23,15 @@ h2{font-size:1.6rem;margin:32px 0 8px}
 .vals div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
 .vals b{display:block;font-size:2.2rem;line-height:1.1}
 .vals span{color:var(--mute)}
+.table-scroll{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px}
+.systems{border-collapse:collapse;width:100%;min-width:640px;font-size:.95rem}
+.systems th,.systems td{border:1px solid var(--line);padding:7px 9px;text-align:center;white-space:nowrap}
+.systems thead th{background:var(--surface);font-weight:800}
+.systems tbody th{text-align:left;background:var(--surface);font-weight:700}
+.systems td.c-pos{color:#1f9d57;font-weight:700}
+.systems td.c-neg{color:#e06a5f;font-weight:700}
+.legend{margin:10px 0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.legend li{line-height:1.45}
 .btn{padding:11px 22px;background:var(--brass);color:#2a1d04;border:0;border-radius:8px;font:inherit;font-weight:800;cursor:pointer}
 .btn:disabled{opacity:.45;cursor:default}
 .ghost{padding:9px 16px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;font:inherit;font-weight:600;cursor:pointer}

@@ -1,6 +1,6 @@
 import SettingsButton from './components/SettingsButton'
 import { useHashRoute } from './hooks/useHashRoute'
-import About from './pages/About'
+import Home from './pages/Home'
 import Playing from './pages/Playing'
 import Practice from './pages/Practice'
 import SettingsProvider from './settings/SettingsProvider'
@@ -12,12 +12,12 @@ export default function App() {
   return (
     <SettingsProvider>
       <header>
-        <a className="logo" href="#about">
+        <a className="logo" href="#home">
           <img src="/res/plusonelogo.png" alt="Plus One home" />
         </a>
         <nav aria-label="Sections">
-          <a href="#about" aria-current={current('about')}>
-            About
+          <a href="#home" aria-current={current('home')}>
+            Home
           </a>
           <a href="#practice" aria-current={current('practice')}>
             Practice
@@ -32,7 +32,7 @@ export default function App() {
         <SettingsButton />
       </div>
       <main>
-        <About active={route === 'about'} />
+        <Home active={route === 'home'} />
         <Practice active={route === 'practice'} />
         <Playing active={route === 'playing'} />
       </main>
