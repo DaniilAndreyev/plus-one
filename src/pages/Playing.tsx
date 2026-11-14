@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import CountChip from '../components/CountChip'
 import Hand from '../components/Hand'
+import SettingsButton from '../components/SettingsButton'
 import { dealerPlay, handValue, settle, shouldDealerPlay } from '../engine/blackjack'
 import { hiLoValue } from '../engine/hiLo'
 import { buildShoe, drawCard, needsReshuffle } from '../engine/shoe'
@@ -17,7 +18,7 @@ interface Round {
 const BETS = [1, 5, 10]
 
 export default function Playing({ active }: { active: boolean }) {
-  const { decks, showCount, shoeEpoch, balance, setBalance, openSettings } = useSettings()
+  const { decks, showCount, shoeEpoch, balance, setBalance } = useSettings()
   const shoe = useRef<Shoe>({ cards: [], runningCount: 0 })
   const [, setTick] = useState(0)
   const [round, setRound] = useState<Round>({ on: false, player: [], dealer: [] })
@@ -93,9 +94,7 @@ export default function Playing({ active }: { active: boolean }) {
     <section id="playing" className={'view' + (active ? ' on' : '')}>
       <div className="stage">
         {showCount && <CountChip shoe={shoe.current} />}
-        <button className="gear" onClick={openSettings} aria-label="Settings">
-          S
-        </button>
+        <SettingsButton />
 
         <div className="pos" style={{ top: '3%', left: '50%' }}>
           <Hand cards={dealer} hideIndex={on ? 1 : -1} />

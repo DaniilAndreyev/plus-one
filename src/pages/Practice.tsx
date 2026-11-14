@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import CountChip from '../components/CountChip'
 import Hand from '../components/Hand'
+import SettingsButton from '../components/SettingsButton'
 import { formatCount, hiLoValue } from '../engine/hiLo'
 import { buildShoe, drawCard, needsReshuffle } from '../engine/shoe'
 import type { Card, Shoe } from '../engine/types'
@@ -21,7 +22,7 @@ const START_MSG = 'Deal a round, count every face-up card.'
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
 export default function Practice({ active }: { active: boolean }) {
-  const { decks, speed, showCount, shoeEpoch, openSettings } = useSettings()
+  const { decks, speed, showCount, shoeEpoch } = useSettings()
   const shoe = useRef<Shoe>({ cards: [], runningCount: 0 })
   const hole = useRef<Card | null>(null)
   const runId = useRef(0)
@@ -133,9 +134,7 @@ export default function Practice({ active }: { active: boolean }) {
     <section id="practice" className={'view' + (active ? ' on' : '')}>
       <div className="stage">
         {showCount && <CountChip shoe={shoe.current} />}
-        <button className="gear" onClick={openSettings} aria-label="Settings">
-          S
-        </button>
+        <SettingsButton />
 
         <div className="pos" style={{ top: '3%', left: '50%' }}>
           <Hand cards={hands.dealer} hideIndex={holeHidden ? 1 : -1} />
