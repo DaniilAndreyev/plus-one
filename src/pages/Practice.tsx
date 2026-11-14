@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import CountChip from '../components/CountChip'
 import Hand from '../components/Hand'
-import SettingsButton from '../components/SettingsButton'
 import { formatCount, hiLoValue } from '../engine/hiLo'
 import { buildShoe, drawCard, needsReshuffle } from '../engine/shoe'
 import type { Card, Shoe } from '../engine/types'
@@ -134,7 +133,6 @@ export default function Practice({ active }: { active: boolean }) {
     <section id="practice" className={'view' + (active ? ' on' : '')}>
       <div className="stage">
         {showCount && <CountChip shoe={shoe.current} />}
-        <SettingsButton />
 
         <div className="pos" style={{ top: '3%', left: '50%' }}>
           <Hand cards={hands.dealer} hideIndex={holeHidden ? 1 : -1} />

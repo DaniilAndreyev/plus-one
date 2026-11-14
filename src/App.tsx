@@ -1,3 +1,4 @@
+import SettingsButton from './components/SettingsButton'
 import { useHashRoute } from './hooks/useHashRoute'
 import About from './pages/About'
 import Playing from './pages/Playing'
@@ -28,6 +29,9 @@ export default function App() {
         <span />
       </header>
       <main>
+        <div className="toolbar">
+          <SettingsButton />
+        </div>
         <About active={route === 'about'} />
         <Practice active={route === 'practice'} />
         <Playing active={route === 'playing'} />
