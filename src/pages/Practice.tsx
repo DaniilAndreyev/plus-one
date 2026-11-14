@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import CountChip from '../components/CountChip'
 import Hand from '../components/Hand'
-import SettingsButton from '../components/SettingsButton'
 import { formatCount, hiLoValue } from '../engine/hiLo'
 import { buildShoe, drawCard, needsReshuffle } from '../engine/shoe'
 import type { Card, Shoe } from '../engine/types'
@@ -132,24 +131,23 @@ export default function Practice({ active }: { active: boolean }) {
 
   return (
     <section id="practice" className={'view' + (active ? ' on' : '')}>
-      <div className="stage">
+      <div className="felt">
+        <div className="stage">
         {showCount && <CountChip shoe={shoe.current} />}
-        <SettingsButton />
 
         <div className="pos" style={{ top: '3%', left: '50%' }}>
           <Hand cards={hands.dealer} hideIndex={holeHidden ? 1 : -1} />
           <div className="tag">Dealer</div>
         </div>
-        <div className="pos" style={{ top: '38%', left: '17%', transform: 'translateX(-50%) rotate(-32deg)' }}>
+        <div className="pos" style={{ top: '38%', left: '17%', transform: 'translateX(-50%) rotate(60deg)' }}>
           <Hand cards={hands.p1} />
         </div>
         <div className="pos" style={{ top: '50%', left: '50%' }}>
           <Hand cards={hands.p2} />
         </div>
-        <div className="pos" style={{ top: '38%', left: '83%', transform: 'translateX(-50%) rotate(32deg)' }}>
+        <div className="pos" style={{ top: '38%', left: '83%', transform: 'translateX(-50%) rotate(-60deg)' }}>
           <Hand cards={hands.p3} />
         </div>
-
         {phase === 'asking' && (
           <div className="ask">
             <b>What is the current count?</b>
@@ -180,6 +178,9 @@ export default function Practice({ active }: { active: boolean }) {
             </button>
           </div>
         )}
+        </div>
+        <div className="head" style={{ top: '60%', left: '3%' }} aria-hidden="true" />
+        <div className="head" style={{ top: '60%', left: '97%' }} aria-hidden="true" />
       </div>
       <div className="bar">
         <span>
