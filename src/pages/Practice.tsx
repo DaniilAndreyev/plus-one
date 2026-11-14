@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import CountChip from '../components/CountChip'
 import Hand from '../components/Hand'
-import { formatCount, hiLoValue } from '../engine/hiLo'
+import { formatCount } from '../engine/hiLo'
 import { buildShoe, drawCard, needsReshuffle } from '../engine/shoe'
+import { countValue, getSystem } from '../engine/systems'
 import type { Card, Shoe } from '../engine/types'
 import { useSettings } from '../settings/context'
 
@@ -21,7 +22,8 @@ const START_MSG = 'Deal a round, count every face-up card.'
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
 export default function Practice({ active }: { active: boolean }) {
-  const { decks, speed, showCount, shoeEpoch } = useSettings()
+  const { decks, speed, showCount, shoeEpoch, systemId } = useSettings()
+  const system = getSystem(systemId)
   const shoe = useRef<Shoe>({ cards: [], runningCount: 0 })
   const hole = useRef<Card | null>(null)
   const runId = useRef(0)
@@ -46,11 +48,11 @@ export default function Practice({ active }: { active: boolean }) {
     speedRef.current = speed
   }, [speed])
 
-  // Build a fresh shoe on mount, when the deck count changes, and on "Reshuffle shoes".
+  // Build a fresh shoe on mount, when the deck count or system changes, and on "Reshuffle shoes".
   useEffect(() => {
-    shoe.current = buildShoe(decks)
+    shoe.current = buildShoe(decks, system)
     refresh()
-  }, [decks, shoeEpoch])
+  }, [decks, shoeEpoch, systemId])
 
   // Leaving the tab mid-round cancels the round and returns to idle.
   useEffect(() => {
@@ -77,7 +79,7 @@ export default function Practice({ active }: { active: boolean }) {
     setPhase('dealing')
     setMsg({ text: '', tone: '' })
     if (needsReshuffle(shoe.current, decks)) {
-      shoe.current = buildShoe(decks)
+      shoe.current = buildShoe(decks, system)
       setMsg({ text: 'Shoe reshuffled. Count reset to 0.', tone: '' })
     }
     const s = shoe.current
@@ -109,13 +111,13 @@ export default function Practice({ active }: { active: boolean }) {
   }
 
   function check() {
-    const g = parseInt(guess, 10)
+    const g = parseFloat(guess)
     const h = hole.current
     if (Number.isNaN(g) || !h) return
     const s = shoe.current
     const before = s.runningCount
     const correct = g === before
-    s.runningCount += hiLoValue(h.rank)
+    s.runningCount += countValue(system, h)
     setHoleHidden(false)
     setStats((st) => ({ ok: st.ok + (correct ? 1 : 0), n: st.n + 1 }))
     setPhase('idle')
@@ -155,7 +157,8 @@ export default function Practice({ active }: { active: boolean }) {
               <input
                 ref={inputRef}
                 type="number"
-                inputMode="numeric"
+                inputMode={system.fractional ? 'decimal' : 'numeric'}
+                step={system.fractional ? 0.5 : 1}
                 aria-label="Running count"
                 value={guess}
                 onChange={(e) => setGuess(e.target.value)}

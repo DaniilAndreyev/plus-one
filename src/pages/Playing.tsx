@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import CountChip from '../components/CountChip'
 import Hand from '../components/Hand'
 import { dealerPlay, handValue, settle, shouldDealerPlay } from '../engine/blackjack'
-import { hiLoValue } from '../engine/hiLo'
 import { buildShoe, drawCard, needsReshuffle } from '../engine/shoe'
+import { countValue, getSystem } from '../engine/systems'
 import type { Card, Shoe } from '../engine/types'
 import { useSettings } from '../settings/context'
 
@@ -17,7 +17,8 @@ interface Round {
 const BETS = [1, 5, 10]
 
 export default function Playing({ active }: { active: boolean }) {
-  const { decks, showCount, shoeEpoch, balance, setBalance } = useSettings()
+  const { decks, showCount, shoeEpoch, balance, setBalance, systemId } = useSettings()
+  const system = getSystem(systemId)
   const shoe = useRef<Shoe>({ cards: [], runningCount: 0 })
   const [, setTick] = useState(0)
   const [round, setRound] = useState<Round>({ on: false, player: [], dealer: [] })
@@ -28,9 +29,9 @@ export default function Playing({ active }: { active: boolean }) {
   const refresh = () => setTick((t) => t + 1)
 
   useEffect(() => {
-    shoe.current = buildShoe(decks)
+    shoe.current = buildShoe(decks, system)
     refresh()
-  }, [decks, shoeEpoch])
+  }, [decks, shoeEpoch, systemId])
 
   function deal() {
     if (balance < bet) {
@@ -42,7 +43,7 @@ export default function Playing({ active }: { active: boolean }) {
     }
     let note = ''
     if (needsReshuffle(shoe.current, decks)) {
-      shoe.current = buildShoe(decks)
+      shoe.current = buildShoe(decks, system)
       note = 'Shoe reshuffled. Count reset to 0.'
     }
     setMsg({ text: note, tone: '' })
@@ -70,7 +71,7 @@ export default function Playing({ active }: { active: boolean }) {
 
   function finish(player: Card[], dealer: Card[]) {
     const s = shoe.current
-    s.runningCount += hiLoValue(dealer[1].rank) // reveal the hole card
+    s.runningCount += countValue(system, dealer[1]) // reveal the hole card
     if (shouldDealerPlay(player, dealer)) dealerPlay(s, dealer)
     const { multiplier, message } = settle(player, dealer)
     setBalance(Math.round((balance + bet * multiplier) * 100) / 100)
