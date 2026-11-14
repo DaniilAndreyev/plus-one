@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { handValue, isBlackjack, settle } from './blackjack'
 import { formatCount, hiLoValue, trueCount } from './hiLo'
 import { buildShoe, drawCard, needsReshuffle } from './shoe'
+import { countValue, getSystem } from './systems'
 import type { Card, Rank } from './types'
 
 const c = (rank: Rank): Card => ({ rank, suit: '♠', red: false })
@@ -68,5 +69,36 @@ describe('blackjack', () => {
     expect(settle([c('10'), c('8')], [c('10'), c('8')]).multiplier).toBe(0)
     expect(settle([c('10'), c('7')], [c('10'), c('8')]).multiplier).toBe(-1)
     expect(settle([c('A'), c('K')], [c('A'), c('Q')]).multiplier).toBe(0)
+  })
+})
+
+describe('counting systems', () => {
+  it('scores KO with +1 for sevens', () => {
+    const ko = getSystem('ko')
+    expect(countValue(ko, c('7'))).toBe(1)
+    expect(countValue(ko, c('9'))).toBe(0)
+  })
+  it('applies the Red 7 colour rule', () => {
+    const red7 = getSystem('red-7')
+    expect(countValue(red7, { rank: '7', suit: '♥', red: true })).toBe(1)
+    expect(countValue(red7, c('7'))).toBe(0)
+  })
+  it('supports fractional values (Halves)', () => {
+    const halves = getSystem('halves')
+    expect(countValue(halves, c('5'))).toBe(1.5)
+    expect(countValue(halves, c('9'))).toBe(-0.5)
+  })
+  it('scores 10 Count with +1 for eights and −2 for tens', () => {
+    const ten = getSystem('ten-count')
+    expect(countValue(ten, c('8'))).toBe(1)
+    expect(countValue(ten, c('K'))).toBe(-2)
+  })
+  it('falls back to Hi-Lo for an unknown id', () => {
+    expect(getSystem('nope').id).toBe('hi-lo')
+  })
+  it('a shoe built with a system counts using it (KO is unbalanced: +4 per deck)', () => {
+    const s = buildShoe(1, getSystem('ko'))
+    for (let i = 0; i < 52; i++) drawCard(s)
+    expect(s.runningCount).toBe(4)
   })
 })
