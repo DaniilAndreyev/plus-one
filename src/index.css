@@ -67,7 +67,7 @@ p.muted{font-size:.95rem}
 .stage .good{color:var(--good)}.stage .bad{color:var(--bad)}
 .bal{position:absolute;left:50%;transform:translateX(-50%);bottom:24%;background:rgba(0,0,0,.35);padding:8px 12px;border-radius:10px;font-weight:600}
 .acts{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:80%}
-.bar{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:12px;color:var(--mute)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:4;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 16px calc(8px + env(safe-area-inset-bottom,0px));color:var(--mute);background:var(--bg);border-top:1px solid var(--line);font-size:.9rem}
 .settings-dialog {
   width: min(92vw, 420px);
   max-height: 90dvh;
