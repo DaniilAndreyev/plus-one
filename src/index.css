@@ -42,8 +42,8 @@ p.muted{font-size:.95rem}
 .btn:disabled{opacity:.45;cursor:default}
 .ghost{padding:9px 16px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;font:inherit;font-weight:600;cursor:pointer}
 .ghost.on{background:var(--brass);color:#2a1d04;border-color:var(--brass)}
-.felt{position:relative}
-.stage{position:relative;width:100%;aspect-ratio:8/5;min-height:460px;max-height:820px;color:#fff;background:radial-gradient(ellipse at 50% 20%,#1d5675,#0e2f44 75%);border:3px solid var(--brass);border-top:0;border-radius:0 0 50% 50%/0 0 80% 80%;overflow:hidden}
+.felt{position:relative;max-width:1180px;margin:0 auto}
+.stage{position:relative;width:100%;max-width:1180px;margin:0 auto;aspect-ratio:8/5;min-height:420px;max-height:700px;color:#fff;background:radial-gradient(ellipse at 50% 20%,#1d5675,#0e2f44 75%);border:3px solid var(--brass);border-top:0;border-radius:0 0 50% 50%/0 0 80% 80%;overflow:hidden}
 .pos{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px}
 .hand{display:flex;min-height:calc(var(--cw)*1.4)}
 .hand .card+.card{margin-left:calc(var(--cw)*-.55)}
@@ -54,7 +54,7 @@ p.muted{font-size:.95rem}
 .card.back{background:repeating-linear-gradient(45deg,#c9861a 0 5px,#a86d12 5px 10px);border:4px solid #f7f2e6}
 @media (prefers-reduced-motion:no-preference){.card{animation:in .2s ease-out}@keyframes in{from{transform:translateY(-14px);opacity:0}}}
 .tag{font-size:.9rem;opacity:.8;min-height:1.3em}
-.head{position:absolute;transform:translate(-50%,-50%);width:clamp(38px,5.5vw,60px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.22),rgba(255,255,255,.07));border:2px solid rgba(255,255,255,.4);box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.head{position:absolute;transform:translate(-50%,-50%);width:clamp(58px,8.5vw,92px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.22),rgba(255,255,255,.07));border:2px solid rgba(255,255,255,.4);box-shadow:0 2px 8px rgba(0,0,0,.35)}
 .gearbar{position:relative;z-index:5}
 .strategy-badge{position:absolute;top:8px;left:12px;display:flex;align-items:center;height:40px;color:var(--ink);font-weight:700;font-size:.95rem;opacity:.85;white-space:nowrap}
 .gear{position:absolute;top:8px;right:12px;width:40px;height:40px;display:grid;place-items:center;border:0;background:transparent;color:var(--ink);cursor:pointer;opacity:.75;transition:opacity .15s,transform .2s}
@@ -67,7 +67,7 @@ p.muted{font-size:.95rem}
 .stage .good{color:var(--good)}.stage .bad{color:var(--bad)}
 .bal{position:absolute;left:50%;transform:translateX(-50%);bottom:24%;background:rgba(0,0,0,.35);padding:8px 12px;border-radius:10px;font-weight:600}
 .acts{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:80%}
-.bar{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:12px;color:var(--mute)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:4;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 16px calc(8px + env(safe-area-inset-bottom,0px));color:var(--mute);background:var(--bg);border-top:1px solid var(--line);font-size:.9rem}
 .settings-dialog {
   width: min(92vw, 420px);
   max-height: 90dvh;
