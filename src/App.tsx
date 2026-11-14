@@ -30,7 +30,7 @@ export default function App() {
         <span />
       </header>
       <div className="gearbar">
-        <StrategyBadge />
+        {route === 'practice' && <StrategyBadge />}
         <SettingsButton />
       </div>
       <main>

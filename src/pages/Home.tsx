@@ -58,6 +58,13 @@ export default function Home({ active }: { active: boolean }) {
         </div>
       </div>
 
+      <h2>What is card counting?</h2>
+      <p>
+        It is a way to track how many high cards, the tens and aces, are still in the shoe. Those cards are good for you,
+        since they mean more blackjacks and more dealer busts. When a lot of them are left, you bet more. You only keep
+        one running number, not every card.
+      </p>
+
       <h2>Counting systems</h2>
       <p className="muted">
         Pick a system to see its card values. Higher levels are more accurate but harder to keep up with. You can choose
@@ -93,13 +100,6 @@ export default function Home({ active }: { active: boolean }) {
           {sys.redSeven && <p className="strat-note">The 7 depends on colour. A red 7 counts +1 and a black 7 counts 0.</p>}
         </div>
       </div>
-
-      <h2>What is card counting?</h2>
-      <p>
-        It is a way to track how many high cards, the tens and aces, are still in the shoe. Those cards are good for you,
-        since they mean more blackjacks and more dealer busts. When a lot of them are left, you bet more. You only keep
-        one running number, not every card.
-      </p>
 
       <h2>Running count vs true count</h2>
       <p>
