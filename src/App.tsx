@@ -1,4 +1,5 @@
 import SettingsButton from './components/SettingsButton'
+import StrategyBadge from './components/StrategyBadge'
 import { useHashRoute } from './hooks/useHashRoute'
 import Home from './pages/Home'
 import Playing from './pages/Playing'
@@ -29,6 +30,7 @@ export default function App() {
         <span />
       </header>
       <div className="gearbar">
+        <StrategyBadge />
         <SettingsButton />
       </div>
       <main>
